@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); 
+
+@import 'shared/_variables'; 
+
+@import "~bootstrap/scss/bootstrap";
+
+body{
+    font-family: $primary-font, sans-serif; 
+}
+.alert{
+    padding: 10px;
+    color: white;
+    text-align: center;
+    margin: none;
+    border: 0; 
+    border-radius: 0;
+
+    &.alert-success{
+        background-color: green; 
+    }
+    &.alert-danger{
+        background-color: blue; 
+    }
+}
+
