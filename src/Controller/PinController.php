@@ -42,6 +42,8 @@ class PinController extends AbstractController
             $em->persist($pin); 
             $em->flush(); 
 
+            $this->addFlash('success', 'Pin successfully created'); 
+
             return $this->redirectToRoute('app_show', 
                 ['id'=> $pin->getId()]
             ); 
@@ -62,6 +64,7 @@ class PinController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $em->flush(); 
 
+            $this->addFlash('success', 'Pin successfully updated!');
             return $this->redirectToRoute('app_index'); 
         }
         return $this->render('pin/edit.html.twig', [
@@ -75,6 +78,8 @@ class PinController extends AbstractController
         $em->remove($pin);
         $em->flush(); 
         
+        $this->addFlash('danger', 'Pin successfully deleted!'); 
+
         return $this->redirectToRoute('app_index'); 
     }
 }
