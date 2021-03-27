@@ -3,13 +3,24 @@
 {% block title %} Find all the best pins in the world {% endblock %}
 
 {% block body %}
-    <h1> {{ pluralize(pins|length, 'Pin', 'Pins')}} </h1>
-    
-        {% for pin in pins %}
-            <h1><a href=" {{ path('app_show', {'id': pin.id}) }} "> {{pin.id}} {{ pin.title }} </a></h1>
-            <p> {{ pin.description | u.truncate(10, '...')}} </p>
-            <p>Submitted {{ pin.createdAt | ago }} </p>
+    {% if pins|length > 0 %}
+        <h1 class="mb-4 text-center text-muted"> {{ pluralize(pins|length, 'Pin', 'Pins')}} </h1>
+        
+        {% for row in pins|batch(3) %}
+            <div class="row mb-5">
+                {% for pin in row %}
+                    <div class="col-md-4">
+                        <article class="bg-white rounded shadow">
+                            <h1 class="h2"><a href=" {{ path('app_show', {'id': pin.id}) }} " 
+                                class="text-secondary"> {{pin.id}} {{ pin.title }} </a></h1>
+                            <p> {{ pin.description | u.truncate(10, '...')}} </p>
+                            <p class="pl-3 pb-3 text-muted"><small>Submitted {{ pin.createdAt | ago }} </small></p>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
         {% endfor %}
-    
-    
+    {% else %}
+        <p class="h1 mt-5 text-center">Not pins yet.<a href=" {{ path('app_create') }} "> Be the first!!</a></p>
+    {% endif %}
 {% endblock %}

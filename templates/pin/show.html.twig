@@ -3,17 +3,27 @@
 {% block body %}
 
     <h1>Show Pin</h1>
-    <article>
-        <h1> {{ pin.title }} </h1>
-        <p> {{ pin.description }}</p>
-        <a href=" {{ path('app_edit', {'id': pin.id}) }} ">Edit</a>
-        <a href="#" onclick="event.preventDefault(); confirm('Are you sure?') &&
-            document.getElementById('js-pin-delete-form').submit() ">Delete</a>
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <article>
+                <h1> {{ pin.title }} </h1>
+                <p> {{ pin.description }}</p>
+                <p class="pb-3 text-muted"><small>Submitted 
+                    <time datetime=" {{ pin.createdAt|date('Y-m-d H:i:s') }} ">
+                        {{ pin.createdAt | ago }} By [OWNER FULL NAME]</small></p>  
+                    </time>
+                     
+                <a href=" {{ path('app_edit', {'id': pin.id}) }} "class="btn btn-light">Edit</a>
+                <a href="#" onclick="event.preventDefault(); confirm('Are you sure?') &&
+                    document.getElementById('js-pin-delete-form').submit() " class="btn btn-light">Delete</a>
 
-        <form id="js-pin-delete-form" action=" {{ path('app_delete', {'id': pin.id}) }} "
-             method="POST" style="display: none;">
-            <input type="hidden" name="_method" value="DELETE">
-            {# <input type="submit" value="delete"> #}
-        </form>
-    </article>
+                <form id="js-pin-delete-form" action=" {{ path('app_delete', {'id': pin.id}) }} "
+                    method="POST" style="display: none;">
+                    <input type="hidden" name="_method" value="DELETE">
+                    {# <input type="submit" value="delete"> #}
+                </form>
+            </article>
+        
+        </div>
+    </div>
 {% endblock %}
