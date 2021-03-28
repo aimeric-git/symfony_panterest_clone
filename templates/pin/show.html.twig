@@ -10,7 +10,7 @@
                 <p> {{ pin.description }}</p>
                 <p class="pb-3 text-muted"><small>Submitted 
                     <time datetime=" {{ pin.createdAt|date('Y-m-d H:i:s') }} ">
-                        {{ pin.createdAt | ago }} By [OWNER FULL NAME]</small></p>  
+                        {{ pin.createdAt | ago }} By {{ pin.user.firstName }} {{ pin.user.lastName }} </small></p>  
                     </time>
                      
                 <a href=" {{ path('app_edit', {'id': pin.id}) }} "class="btn btn-light">Edit</a>
