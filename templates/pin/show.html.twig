@@ -2,12 +2,11 @@
 
 {% block body %}
 
-    <h1>Show Pin</h1>
     <div class="row">
         <div class="col-md-6 mx-auto">
             <article>
-                <h1> {{ pin.title }} </h1>
-                <p> {{ pin.description }}</p>
+                <h1 class="text-secondary"> {{ pin.title }} </h1>
+                <p class="text-break"> {{ pin.description }}</p>
                 <p class="pb-3 text-muted"><small>Submitted 
                     <time datetime=" {{ pin.createdAt|date('Y-m-d H:i:s') }} ">
                         {{ pin.createdAt | ago }} By {{ pin.user.firstName }} {{ pin.user.lastName }} </small></p>  
