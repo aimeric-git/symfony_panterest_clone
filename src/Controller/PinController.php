@@ -40,8 +40,7 @@ class PinController extends AbstractController
         $form->handleRequest($request); 
 
         if ($form->isSubmitted() && $form->isValid()){
-            $janewick = $userRepo->findOneBy(['email' => 'janewick@example.com']); 
-            $pin->setUser($janewick); 
+            $pin->setUser($this->getUser()); 
 
             $em->persist($pin); 
             $em->flush(); 
