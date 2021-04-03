@@ -8,18 +8,27 @@
     {% endfor %}
     <div class="row">
         <div class="col-md-6 mx-auto">
-            <h1 class="text-center text-muted">Register</h1>
+            <h1 class="text-center text-muted">Create an account</h1>
 
             {{ form_start(registrationForm) }}
-                {{ form_row(registrationForm.firstName) }}
-                {{ form_row(registrationForm.lastName) }}
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(registrationForm.firstName) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(registrationForm.lastName) }}
+                    </div>
+                </div>
                 {{ form_row(registrationForm.email) }}
                 {{ form_row(registrationForm.plainPassword, {
                     label: 'Password'
                 }) }}
                 {{ form_row(registrationForm.agreeTerms) }}
 
-                <button type="submit" class="btn btn-primary btn-block">Register</button>
+                <button type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
+                <p class="text-center mt-3 text-muted">
+                    Already have an account? <a href=" {{ path('app_login') }} ">Log in</a> 
+                </p>
             {{ form_end(registrationForm) }}
         
         </div>
