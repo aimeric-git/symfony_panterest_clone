@@ -15,6 +15,14 @@
                                 class="text-secondary"> {{pin.id}} {{ pin.title }} </a></h1>
                             <p> {{ pin.description | u.truncate(10, '...')}} </p>
                             <p class="pl-3 pb-3 text-muted"><small>Submitted {{ pin.createdAt | ago }} </small></p>
+                            
+                            {# <a href="#" onclick="event.preventDefault(); confirm('Are you sure?') &&
+                                 document.getElementById('js-pin-delete-form-{{ pin.id }}').submit() " class="m-3 btn btn-danger">&times; Delete
+                            </a>
+                                <form id="js-pin-delete-form-{{ pin.id }}" action=" {{ path('app_delete', {'id': pin.id}) }} "
+                                    method="POST" style="display: none;">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                </form> #}
                         </article>
                     </div>
                 {% endfor %}

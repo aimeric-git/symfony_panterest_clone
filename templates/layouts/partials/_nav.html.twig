@@ -15,9 +15,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Account</a>
                 </li>
+                
                 <li class="nav-item">
-                    <a class="nav-link" href=" {{ path('app_logout') }} "> Logout </a>
+                    <a class="nav-link" href=" {{ logout_path('main') }} "
+                        onclick="event.preventDefault(); document.getElementById('js-form-logout').submit();"> Logout   
+                    </a>
                 </li>
+                <form id="js-form-logout" method="POST" style="display:none;" action=" {{ path('app_logout') }} ">
+                    <input type="hidden" name="_csrf_token" value=" {{ csrf_token('id_csrf_logout') }} ">
+                </form>
+
             {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href=" {{ path('app_register') }} ">Register</a>
