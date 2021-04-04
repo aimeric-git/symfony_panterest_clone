@@ -12,9 +12,10 @@
          
         <p class="mt-3"> {{app.user.email }} </p>
         <h2> {{ app.user.firstName }} {{ app.user.lastName }} </h2>
+        <p><small> Account created at {{ app.user.createdAt|date('d,m,Y') }} </small></p>
         <p>
-            <a href="#">Change password</a> |
-            <a href=""> Edit account </a>
+            <a href=" {{ path('app_account_change') }} ">Change password</a> |
+            <a href=" {{ path('app_account_edit') }} "> Edit account </a>
         </p>
     </div>
 </div>
