@@ -224,4 +224,9 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function gravatar()
+    {
+        return 'https://www.gravatar.com/avatar/'. md5(strtolower(trim($this->getEmail()))) .'/?s=100'; 
+    }
 }
