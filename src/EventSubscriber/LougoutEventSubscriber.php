@@ -20,7 +20,7 @@ class LougoutEventSubscriber implements EventSubscriberInterface
     {
         $event->getRequest()->getSession()->getFlashBag()->add(
             'success', 
-            'Logged out successfully'
+            'Logged out successfully'. ' ' . $event->getToken()->getUser()->getLastName() 
         );
         
         // $event->setResponse(new RedirectResponse($this->urlGenerator->generate('app_index')));
