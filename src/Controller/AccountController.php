@@ -12,10 +12,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+
 class AccountController extends AbstractController
 {
     /**
      * @Route("/account", name="app_account", methods="GET")
+     * 
      */
     public function index(): Response
     {
