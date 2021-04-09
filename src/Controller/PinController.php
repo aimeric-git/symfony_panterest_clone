@@ -26,6 +26,12 @@ class PinController extends AbstractController
 
     public function show(Pin $pin)
     {
+        if(! $this->getUser()->isVerified()) 
+        {
+            $this->addFlash('danger', 'You need to verify your count');
+
+            return $this->redirectToRoute('app_index'); 
+        }
 
         return $this->render('pin/show.html.twig', [
             'pin'=> $pin
@@ -34,6 +40,16 @@ class PinController extends AbstractController
 
     public function create(EntityManagerInterface $em,UserRepository $userRepo, Request $request): Response
     {
+        if(! $this->getUser())
+        {
+            throw $this->createAccessDeniedException(); 
+        }
+        if(! $this->getUser()->isVerified()) 
+        {
+            $this->addFlash('danger', 'You need to verify your count');
+
+            return $this->redirectToRoute('app_index'); 
+        }
         $pin = new Pin; 
         $form = $this->createForm(PinType::class, $pin);
 
@@ -58,6 +74,17 @@ class PinController extends AbstractController
 
     public function edit(Pin $pin, EntityManagerInterface $em, Request $request): Response
     {
+        if(! $this->getUser())
+        {
+            throw $this->createAccessDeniedException(); 
+        }
+
+        if(! $this->getUser()->isVerified()) 
+        {
+            $this->addFlash('dangeer', 'You need to verify your count');
+
+            return $this->redirectToRoute('app_index'); 
+        }
         $form = $this->createFormBuilder($pin)
                         ->add('title')
                         ->add('description')
@@ -78,6 +105,13 @@ class PinController extends AbstractController
 
     public function delete(Pin $pin, EntityManagerInterface $em): Response
     {
+        if(! $this->getUser()->isVerified()) 
+        {
+            $this->addFlash('dangeer', 'You need to verify your count');
+
+            return $this->redirectToRoute('app_index'); 
+        }
+
         $em->remove($pin);
         $em->flush(); 
         

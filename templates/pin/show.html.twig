@@ -11,7 +11,8 @@
                     <time datetime=" {{ pin.createdAt|date('Y-m-d H:i:s') }} ">
                         {{ pin.createdAt | ago }} By {{ pin.user.firstName }} {{ pin.user.lastName }} </small></p>  
                     </time>
-                     
+
+                {% if (app.user == pin.user) %}     
                 <a href=" {{ path('app_edit', {'id': pin.id}) }} "class="btn btn-light">Edit</a>
                 <a href="#" onclick="event.preventDefault(); confirm('Are you sure?') &&
                     document.getElementById('js-pin-delete-form').submit() " class="btn btn-light">Delete</a>
@@ -21,6 +22,7 @@
                     <input type="hidden" name="_method" value="DELETE">
                     {# <input type="submit" value="delete"> #}
                 </form>
+                {% endif %}
             </article>
         
         </div>
